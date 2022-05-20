@@ -4,13 +4,13 @@
 
 ## [example](/example)
 
-> 1.运行单元测试
+> 1.run unit test
 
 ```shell
 ./example/fasthttprouter/unit.sh
 ```
 
-> 2.结果
+> 2.case result and coverage
 
 ![case](https://github.com/jhq0113/fasthttpunit/blob/main/imgs/result.png?raw=true)
 ![cover](https://github.com/jhq0113/fasthttpunit/blob/main/imgs/result1.png?raw=true)
