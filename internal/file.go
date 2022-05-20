@@ -12,6 +12,11 @@ func IsYaml(fileName string) bool {
 			return true
 		}
 
+		if len(fileName) > len(yaml) {
+			if fileName[len(fileName)-len(yaml):] == yaml {
+				return true
+			}
+		}
 	}
 
 	return false

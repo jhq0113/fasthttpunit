@@ -1,0 +1,10 @@
+desc: '等于'
+path: '/equal'
+caseList:
+  - desc: '1'
+    params: 'a=e&c=1'
+    expected: 'Hello World'
+
+  - desc: '2'
+    params: 'a=1&b=c'
+    expected: 'Ok'

@@ -1,0 +1,12 @@
+desc: '正则匹配'
+path: '/pattern'
+caseList:
+  - desc: '1'
+    params: 'a=1&c=5'
+    expected: '^{\"code\": 200.*}$'
+    expectedType: 'pattern'
+
+  - desc: '2'
+    params: 'a=2&c=6'
+    expected: '^{\"code\": 400.*}$'
+    expectedType: 'pattern'
