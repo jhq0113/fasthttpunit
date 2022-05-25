@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/jhq0113/fasthttpunit"
@@ -16,11 +17,13 @@ func mockB() {
 }
 
 func TestUnit(t *testing.T) {
+	fmt.Println(os.Args)
+
 	r := loadRouter()
 
 	casePath := fasthttpunit.BinPath() + "/case"
 
-	conf, err := fasthttpunit.LoadConf(casePath)
+	conf, err := fasthttpunit.LoadConfByPath(casePath)
 	if err != nil {
 		t.Fatal(fasthttpunit.Red("load conf err: %s", err.Error()))
 	}

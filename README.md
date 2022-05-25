@@ -7,7 +7,9 @@
 > 1.运行单元测试
 
 ```shell
-./example/fasthttprouter/unit.sh
+./example/path/unit.sh
+
+./example/file/unit.sh
 ```
 
 > 2.用例结果及覆盖率

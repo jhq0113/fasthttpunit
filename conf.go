@@ -4,6 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+
+	"github.com/jhq0113/fasthttpunit/internal"
+	jsoniter "github.com/json-iterator/go"
+	"gopkg.in/yaml.v2"
 )
 
 type Conf struct {
@@ -17,7 +21,39 @@ func newConf() *Conf {
 	}
 }
 
-func LoadConf(basePath string) (c *Conf, err error) {
+func LoadConf(fileName string) (c *Conf, err error) {
+	data, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		return nil, err
+	}
+
+	conf := newConf()
+	if internal.IsYaml(fileName) {
+		err = yaml.Unmarshal(data, conf)
+		if err != nil {
+			return nil, err
+		}
+	} else if internal.IsJson(fileName) {
+		err = jsoniter.Unmarshal(data, conf)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		return nil, ErrUnsupportedFileType
+	}
+
+	if len(conf.ApiList) < 1 {
+		return nil, ErrNotFoundApi
+	}
+
+	for index, _ := range conf.ApiList {
+		conf.ApiList[index].load()
+	}
+
+	return conf, nil
+}
+
+func LoadConfByPath(basePath string) (c *Conf, err error) {
 	fileList, err := ioutil.ReadDir(basePath)
 	if err != nil {
 		return nil, err

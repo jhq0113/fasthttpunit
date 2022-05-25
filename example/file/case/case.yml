@@ -1,0 +1,39 @@
+delay: 3
+apiList:
+  - desc: '等于'
+    path: '/equal'
+    caseList:
+      - desc: '1'
+        params: 'a=e&c=1'
+        expected: 'Hello World'
+
+      - desc: '2'
+        params: 'a=1&b=c'
+        expected: 'Ok'
+
+  - desc: '包含'
+    path: '/contains'
+    method: 'POST'
+    caseList:
+      - desc: '1'
+        params: 'num=1&sign=1'
+        expected: 'Hello'
+        expectedType: 'contains'
+
+      - desc: '2'
+        params: 'num=2&sign=2'
+        expected: 'hello'
+        expectedType: 'contains'
+
+  - desc: '正则匹配'
+    path: '/pattern'
+    caseList:
+      - desc: '1'
+        params: 'a=1&c=5'
+        expected: '^{\"code\": 200.*}$'
+        expectedType: 'pattern'
+
+      - desc: '2'
+        params: 'a=2&c=6'
+        expected: '^{\"code\": 400.*}$'
+        expectedType: 'pattern'
